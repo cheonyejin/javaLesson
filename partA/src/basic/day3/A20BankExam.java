@@ -55,7 +55,7 @@ public class A20BankExam {
                     break;
 
                 default:
-                    System.out.println("잘못된 메뉴 선택값입니다 1~4만 입력하세요.");\
+                    System.out.println("잘못된 메뉴 선택값입니다 1~4만 입력하세요.");
                     System.out.println("dkssudgktpdyd~");
                     break;
             }//swith
