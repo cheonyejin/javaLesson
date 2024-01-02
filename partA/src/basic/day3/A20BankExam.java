@@ -40,7 +40,7 @@ public class A20BankExam {
                     if(money <= blance){
                         System.out.println("고객님의 잔액은 " + df.format(blance));
                         blance -= money;}
-                        
+
                     else 
                         System.out.println("잔액이 부족합니다");
 
@@ -55,7 +55,8 @@ public class A20BankExam {
                     break;
 
                 default:
-                    System.out.println("잘못된 메뉴 선택값입니다 1~4만 입력하세요.");
+                    System.out.println("잘못된 메뉴 선택값입니다 1~4만 입력하세요.");\
+                    System.out.println("dkssudgktpdyd~");
                     break;
             }//swith
             
