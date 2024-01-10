@@ -33,6 +33,7 @@ public class Human  implements Thinkable, Cookable , Runnable{
     @Override
     public void cook(String material) {
         System.out.println(material + "를 사용해서 여러가지 요리를 합니다 ");
+        
     }
 
     @Override
