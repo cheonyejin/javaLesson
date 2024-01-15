@@ -157,12 +157,15 @@ public class CustomerManageApp {
         for (int i = 0; i <customers.size(); i++) { 
             if(customers.get(i).getName().equals(name)){
                 isfind = true;
-                System.out.println("삭제하려면 엔터, 취소는 n을 입력하세요");
-                if(System.console().readLine().equals("n")){
+                System.out.println("삭제하려면 엔터, 취소는 n을 입력하세요"+ customers.get(i));
+                if(System.console().readLine().equals("n")){ 
                     continue;
                 }else{
                     customers.remove(i);    //같은 값이 2개인 경우 먼저 입력된것이 삭제된다
                     System.out.println("고객의 정보가 삭제되었습니다.");
+                     //삭제하고 나면 인덱스가 바뀐다 --> -1 주면 됨
+                    //동일이름이 3개이상인 경우 1 (2는 건너뀜), 3 순서로 삭제가된다 
+                    i--;
                 }
             }
         }
@@ -171,8 +174,11 @@ public class CustomerManageApp {
         }
     }//removeWord
 
-    private void initialize() {
+    private void initialize() {            
         // 1.일반 2.vip 3.기타
+        customers.add(new Customer("서희주", "010-5678-9012", 1));
+        customers.add(new Customer("서희주", "010-5678-9012", 2));
+        customers.add(new Customer("서희주", "010-5678-9012", 3));
         customers.add(new Customer("서희주", "010-5678-9012", 1));
         customers.add(new Customer("김다민", "010-9012-3456", 1));
         customers.add(new Customer("이현지", "010-3456-7890", 1));
