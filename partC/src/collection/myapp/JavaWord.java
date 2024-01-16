@@ -7,6 +7,7 @@ public class JavaWord {
     private String korean;
     private int level;      // 0 : 초급 ,1:중급 , 2:고급
 
+    //커스텀 생성자
     public JavaWord(String english,String korean,int level) {
         this.english=english;
         this.korean=korean;

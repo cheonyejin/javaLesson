@@ -8,12 +8,12 @@ public class JavaWordApp {
      public static void main(String[] args) {
         
         //단어장을 시작하는 프로그램입니다.
-        //1. 단어장을 생성
+        //1. 단어장을 생성(여러 단어들로)
         JavaWordBook myBook = new JavaWordBook();
 
         //2. 단어 추가
         JavaWord newWord = new JavaWord("public", "공용의", 1);
-        myBook.addWord(newWord);
+        myBook.addWord(newWord);        //addWord()는 JavaWordBook에서 만든 메소드이다.
         myBook.addWord(new JavaWord("private", "개인적인", 1));
         myBook.addWord(new JavaWord("protected", "보호하는", 1));
         myBook.addWord(new JavaWord("iterate", "반복하다", 3));
@@ -22,7 +22,9 @@ public class JavaWordApp {
         myBook.addWord(new JavaWord("binary", "2진수의", 3));
 
         //메모장 출력
+        System.out.println("\nmyBook.wordAllPrint();의 출력값 ∨ ∨ ∨ ∨ ∨");
         myBook.wordAllPrint();
+        System.out.println("\nmyBook.wordAllPrint();의 출력값 ∧ ∧ ∧ ∧ ∧");
 
         //3. 단어 조회
         //1) 영어단어 입력하면 찾아주기
