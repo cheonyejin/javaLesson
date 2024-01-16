@@ -26,8 +26,8 @@ public class C01ListExample {
 
         //아래의 2개의 메소드 비교 
     
-        strlist.add(2,"99999");
-        strlist.set(2, "!!!!!");
+        strlist.add(2,"99999");     //추가
+        strlist.set(2, "!!!!!");    //수정
         System.out.println("항목 변경 후 : " + strlist);
         System.out.println(strlist.get(0));
         System.out.println(strlist.get(3));
