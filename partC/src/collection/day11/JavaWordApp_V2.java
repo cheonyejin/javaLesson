@@ -8,17 +8,15 @@ import collection.myapp.JavaWord;
  */
 public class JavaWordApp_V2 {
 
-    //private : 현재 클래스에서만 사용할 목적으로 접근 제한합니다.
-    //day10에 배운 List 예제 풀어보기 -private
-    private List<JavaWord> words = new ArrayList<>();
+    
+    
+    private List<JavaWord> words = new ArrayList<>();    
 
-
-
-    //프로그램 실행 시작하는 메소드 -private
+    
     private void start(){
-        initialize();   //word리스트를 몇개만 저장해서 초기화(테스트용)
+        initialize();   
 
-        //기능 : 등록,목록,검색,삭제
+    
         System.out.println("단어장 시작합니다" +  "_".repeat(30));
         while (true) {
             System.out.println("\t메뉴를 선택하세요");
@@ -27,43 +25,38 @@ public class JavaWordApp_V2 {
             System.out.println("\t 3. 단어 검색");
             System.out.println("\t 4. 단어 삭제");
             System.out.println("\t 5. 프로그램 종료");
-            System.out.println("\t 선택 > ");   //메소드에 입력기능이 있으면 sCANNER관리가 불편하다 - 일일이 꺼야됨
-            int select = Integer.parseInt(System.console().readLine()); //console : 표준 입출력장치
-            // parseInt :정수로 변환      
-            //입력받는 방법 : 1. System.In 2.System.console().readLine()
+            System.out.println("\t 선택 > ");   
+            
+            int select = Integer.parseInt(System.console().readLine()); 
+     
+     
 
 
             switch (select) {
                 case 1:
-                    addWord();          //단어 등록 메소드 
+                    addWord();         
                     break;
-                case 2:  listWord(); break;        //단어 목록 조회 메소드
-                case 3:  searchWordBy(); break;        //단어 검색 메소드
-                case 4:  removeWord(); break;        //단어 삭제 메소드
+                case 2:  listWord(); break;        
+                case 3:  searchWordBy(); break;        //searchWord->searchWordBy
+                case 4:  removeWord(); break;        
                 case 5:  
                     System.out.println("프로그램을 종료합니다");
-                    System.exit(0); //main실행을 종료
+                    System.exit(0);
                     break;       
     
                 default:
                     System.out.println("잘못된 선택값입니다");
                     break;
-            }//switch
-
-            
-        }//while
-
-
-
-    }//start
+            }  
+        }
+    }
 
     private void initialize() {
-        //word리스트를 몇개만 저장해서 초기화(테스트용)
         words.add(new JavaWord("public", "공용의", 1));
         words.add(new JavaWord("private", "개인적인", 1));
         words.add(new JavaWord("iterate", "반복하다", 3));
         words.add(new JavaWord("application", "응용프로그램", 2));
-    }//initialize
+    }
 
     private void addWord() {
         System.out.println("\t단어를 등록합니다.");
@@ -75,7 +68,7 @@ public class JavaWordApp_V2 {
         int level = Integer.parseInt(System.console().readLine());
 
         words.add(new JavaWord(english, korean, level));
-    }//addWord
+    }
 
 
     //출력메소드: 출력할 여러개의 JavaWord 객체를 -> List
