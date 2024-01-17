@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.IllformedLocaleException;
 import java.util.List;
 
 import collection.myapp.JavaWord;
@@ -84,11 +85,18 @@ public class JavaWordList implements WordList{
         return words;
     }
 
-    //단어 추가
+    /*단어 추가
     @Override
     public void add(JavaWord word) {
         if(words.size()==WordList.MAX_LENGTH){
         System.out.println("단어장이 꽉 찼습니다.");
+        }
+        words.add(word);
+    }*/
+    @Override           //ReviewProb의 prob_8_1
+    public void add(JavaWord word) {
+        if(words.size()==5){
+            throw new IllegalArgumentException("단어장이 꽉찼습니다. 단어장을 새로 만들어주세요");
         }
         words.add(word);
     }
@@ -105,12 +113,28 @@ public class JavaWordList implements WordList{
         return -1;
     }
 
-    //단어를 인덱스로 삭제
+     /*단어를 인덱스로 삭제
+     @Override
+     public JavaWord remove(int index) {
+         JavaWord word = words.remove(index);    //index 삭제할 위치, 삭제한 데이터를 리턴합니다 
+         return word;
+     }
+
+     */
+
+    //단어를 인덱스로 삭제- ReviewProb의 prob_8
     @Override
     public JavaWord remove(int index) {
-        JavaWord word = words.remove(index);
+        if(index < 0 || index > words.size())
+            //throw new Exception(""); // 체크드 익셉션
+            throw new IllformedLocaleException("삭제할 번호가 잘못되었습니다"); // 언체크드 익셉션
+            //새로운 Exception 객체를 생성하면 개발자가 만든 예외가 발생한다 
+            // 발생용으로 IllformedLocaleException 많이 씀 
+            //예를들면 개발할때 모든 예외를 한번에 처리하기 위해 이런 방법을 사용합니다 
+        JavaWord word = words.remove(index);    //index 삭제할 위치, 삭제한 데이터를 리턴합니다 
         return word;
     }
+
 
     //단어 1개 조회(여러개 일때는 처음 1개)
 
