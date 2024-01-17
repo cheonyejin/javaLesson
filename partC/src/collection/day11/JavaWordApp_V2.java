@@ -4,7 +4,8 @@ import java.util.List;
 import collection.myapp.JavaWord;
 
 /*
- * JavaWordApp_V2 : 검색메소드, print메소드 리팩토리
+ * JavaWordApp_V2 : 1) for문을 printWordList에 만들어서 출력메소드
+ *                  2) searchAllWord(String)1, searchAllWord(Int)2,로 나누어 검색searchWordBy
  */
 public class JavaWordApp_V2 {
 
@@ -17,7 +18,7 @@ public class JavaWordApp_V2 {
         initialize();   
 
     
-        System.out.println("단어장 시작합니다" +  "_".repeat(30));
+        System.out.println("단어장 시작합니다" +  "_________________");
         while (true) {
             System.out.println("\t메뉴를 선택하세요");
             System.out.println("\t 1. 단어 등록");
@@ -82,7 +83,7 @@ public class JavaWordApp_V2 {
     }// 이 메소드는 searchWord 와 listWord 같은 다른 메소드들이 리스트를 출력할때 쓰인다 
 
     private void listWord() {
-        //리스트  words에 저장된 모든 요소들을 for문을 사용해서 모두 출력해보시오
+        
         System.out.println("\t단어 목록 출력합니다.");
         System.out.println(String.format("%-20s %-30s %-20s", "ENGLISH","KOREAN","LEVEL"));
         
@@ -180,19 +181,8 @@ public class JavaWordApp_V2 {
     private void removeWord() {
         System.out.println("\t단어를 삭제합니다.");
         System.out.println("삭제를 단어를 입력하세요.__");
-        String find = System.console().readLine();    //삭제할 단어 입력받기
+        String find = System.console().readLine();    
         boolean isfind = false;
-        /* 내가 만들어본 코드 -> 됨
-        for (int i = 0; i <words.size(); i++) { 
-            JavaWord wordList = words.get(i);
-            if (wordList.getEnglish().equals(find)) {
-                words.find(i);
-                System.out.println("삭제되었습니다.");
-                //break; //: 있어도 없어도 되는데 있으면 없는 단어이면 바로 넘어가고 , 있으면 한번 찾고 삭제돼
-            }
-            
-        }if(isfind = false) 
-        System.out.println("존재하지 않는 단어입니다");*/
         for (int i = 0; i <words.size(); i++) { 
             if(words.get(i).getEnglish().equals(find)){
                 isfind = true;
@@ -201,7 +191,7 @@ public class JavaWordApp_V2 {
                 if(System.console().readLine().equals("n")){
                     continue;
                 }else{
-                    words.remove(i);    //같은 값이 2개인 경우 먼저 입력된것이 삭제된다
+                    words.remove(i);  
                     System.out.println("단어가 삭제되었습니다.");
                 }
             }
@@ -211,16 +201,15 @@ public class JavaWordApp_V2 {
             
         }
 
-    }//removeWord
+    }
     
 
     public static void main(String[] args) {
-        //프로그램 실행하는 객체 생성하고 (메소드로 기능을 분리할때 main이 호출하는 static을 없애기 위함)
-        //start 메소드 프로그램 실행 내용을 코딩
+        
         JavaWordApp_V2 app = new JavaWordApp_V2();
         app.start();
 
-    }//main
+    }
 
 
     
