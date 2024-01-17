@@ -16,15 +16,16 @@ public class JavaWordApp_V1 {
         initialize();   //시작하면 바로 intialize()실행하기
 
         //기능 : 등록,목록,검색,삭제
-        System.out.println("단어장 시작합니다" +  "_".repeat(30));
+        System.out.println("단어장 시작합니다" +  "____________");
         while (true) {
             System.out.println("\t메뉴를 선택하세요");
             System.out.println("\t 1. 단어 등록");
-            System.out.println("\t 2. 단어 목록 조회 ");
+            System.out.println("\t 2. 단어 목록 조회");
             System.out.println("\t 3. 단어 검색");
             System.out.println("\t 4. 단어 삭제");
             System.out.println("\t 5. 프로그램 종료");
-            System.out.println("\t 선택 > ");   //메소드에 입력기능이 있으면 scanner관리가 불편하다 - 일일이 꺼야됨
+            System.out.println("\t 선택 > ");   
+            //메소드에 입력기능이 있으면 scanner관리가 불편하다 - 일일이 꺼야됨
             
             int select = Integer.parseInt(System.console().readLine()); //console : 표준 입출력장치
             // parseInt :정수로 변환      
@@ -94,8 +95,8 @@ public class JavaWordApp_V1 {
         System.out.println("검색할 단어를 영문으로 검색하세요.");
         String find = System.console().readLine();  
         boolean isfind = false;
-        for(JavaWord word : words){     
-            if(word.getEnglish().equals(find)){      //문자열 비교는 무조건 equals이다. ==는 정수비교
+        for(JavaWord word : words){         //words(리스트)의 원소 하나하나를 JavaWord타입의 word(변수)에 할당하는것을 반복
+            if(word.getEnglish().equals(find)){      // .equals() : 문자열비교 / == :  정수비교
                 System.out.println("검색결과 : "+word.getEnglish()+" = " + word.getKorean()+" 레벨 : " + word.getLevel());
                // return;  //1 단어를 한개 찾으면  종료 -> 
                  isfind = true;     //2 같은 단어가 2번이상있을때  / isfind에 true를 넣는것이고
@@ -111,25 +112,14 @@ public class JavaWordApp_V1 {
         System.out.println("삭제를 단어를 입력하세요.__");
         String find = System.console().readLine();    //삭제할 단어 입력받기
         boolean isfind = false;
-        /* 내가 만들어본 코드 -> 됨
-        for (int i = 0; i <words.size(); i++) { 
-            JavaWord wordList = words.get(i);
-            if (wordList.getEnglish().equals(find)) {
-                words.find(i);
-                System.out.println("삭제되었습니다.");
-                //break; //: 있어도 없어도 되는데 있으면 없는 단어이면 바로 넘어가고 , 있으면 한번 찾고 삭제돼
-            }
-            
-        }if(isfind = false) 
-        System.out.println("존재하지 않는 단어입니다");*/
         for (int i = 0; i <words.size(); i++) { 
             if(words.get(i).getEnglish().equals(find)){
                 isfind = true;
                 System.out.println("인덱스"+i+"에서 단어를 찾았습니다.");
                 System.out.println("삭제하려면 엔터, 취소는 n을 입력하세요");
-                if(System.console().readLine().equals("n")){
-                    continue;
-                }else{
+                if(System.console().readLine().equals("n")){    
+                    continue;   // n->continue->남은for문 실행하지않고 다음으로 넘어가기 
+                }else{          // 엔터를 누르면 
                     words.remove(i);    //같은 값이 2개인 경우 최근입력값을 먼저 삭제한다.
                     System.out.println("단어가 삭제되었습니다.");
                 }
