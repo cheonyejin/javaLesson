@@ -3,23 +3,26 @@ package collection.day12;
 import java.util.ArrayList;
 import java.util.List;
 
-import collection.myapp.JavaWord;  //패키지가 달라서 선언한import
+import collection.myapp.JavaWord; 
 
 /**
- * JavaWordApp_V3 : 객체 지향 프로그래밍은 최대한 객체로 분리시켜서
- *                : 실행되는 환경에 독립적이 되도록 합니다.
- * JavaWord :  단어 객체
- * JavaWordList : 단어장 객체
+ * JavaWordApp_V3 : 아래의 JavaWordList 를 이용해서 똑같이 메뉴가 동작하도록 
+ *                  변경해 봅시다.
+ * JavaWord :  단어 객체(myapp패키지)
+ * JavaWordList : 단어장 객체(여기패키지)
+ * WordList :(여기패키지) :추상메서드, 최대길이값 상수로 선언
+ * 객체 지향 프로그래밍은 최대한 객체로 분리시켜서 실행되는 환경에 독립적이 되도록 합니다.
  */
+
 public class JavaWordApp_V3 {
-    //private : JavaWordList 객체
+  
     private JavaWordList words = new JavaWordList();
     
-    //프로그램 실행을 시작하는 메소드
+ 
     private void start(){
-            words.initialize();           //words 리스트 요소를 몇개만 저장해서 초기화(테스트용)
-            //단어 등록,목록,검색,삭제 기능을 메뉴로 구현합니다.
-            System.out.println("단어장 프로그램 시작합니다.~~" + "~".repeat(30));
+            words.initialize();    //JavaWordList에 있는 initialize()
+            
+            System.out.println("단어장 프로그램 시작합니다.~~~~~~~~~~~~~~");
             while(true){
                 System.out.println("\t <메뉴를 선택하세요.>");
                 System.out.println("\t 1. 단어 등록");
@@ -27,28 +30,75 @@ public class JavaWordApp_V3 {
                 System.out.println("\t 3. 단어 검색");
                 System.out.println("\t 4. 단어 삭제");
                 System.out.println("\t 5. 프로그램 종료");
-                System.out.print("선택 > ");        //메소드에 입력기능이 있을 때는 Scanner 관리가 불편
-                int select = Integer.parseInt(System.console().readLine());  //키보드 입력 문자열->정수
-                //System.console() : 시스템의 콘솔(표준입출력장치) 객체를 리턴. readLine 입력메소드 실행
+                System.out.print("선택 > ");     
+                int select = Integer.parseInt(System.console().readLine());  
+            
                 switch (select) {
                     case 1:
-                        addWord();          //단어 등록 메소드 실행
+                        addWord();      
                         break;
-                    case 2: listWord();  break;    // 단어 목록 조회 메소드 실행
-                    case 3: searchWordBy();  break;    // 단어 목록 조회 메소드 실행
-                    case 4: removeWord();  break;    // 단어 목록 조회 메소드 실행
+                    case 2: listWord();  break;    
+                    case 3: searchWordBy();  break;    
+                    case 4: removeWord();  break;    
                     case 5: 
                         System.out.println("프로그램을 종료합니다.");
-                        System.exit(0);     //main 실행을 종료  
+                        System.exit(0);     
                         break;    
                     default:
                         System.out.println("잘못된 선택값 입니다.");
-                        //break;
-                } //switch end
-            }   //while end
-    }   //start end
+                        
+                } 
+            }  
+    }   
+    
+    private void addWord() {
+        System.out.println("\t::단어 등록합니다.::");
+        System.out.print("영어 단어 입력하세요. _ ");
+        String english = System.console().readLine();
+        System.out.print("한글 의미 입력하세요. _ ");
+        String korean = System.console().readLine();
+        System.out.print("단어 레벨 입력하세요.(1:초급 2:중급 3:고급) _");
+        int level = Integer.parseInt(System.console().readLine());
+        
+        words.add(new JavaWord(english, korean, level));
+        
+    }
+    
+    //initialize 사라짐: JavaWordList에 있음
+    
+    private void listWord() {
+        System.out.println("\t::단어 목록 출력합니다.::");
+        words.print();      // printWordList(words);   ->   words.print(); 
+    }
 
-
+    //JavaWordList 객체의 메소드를 이용해서 수정해보세요.
+    private void searchWordBy() {
+        System.out.println("\\t단어 검색합니다. 단어 검색은 1, 레벨 검색은 2 를 입력하세요 :");
+        String find=null;
+        List<JavaWord> list=null;      
+        switch (System.console().readLine()) {
+            case "1":
+            System.out.println("검색할 영문 단어를 입력하세요.__");
+            find = System.console().readLine();
+            list= words.searchAllByEnglish(find);   //searchAllWord-> searchAllByEnglish (JavaWordList에)
+            break;
+            case "2":
+            System.out.println("검색할 레벨을 입력하세요.__");
+            int level = Integer.parseInt(find);
+            list = words.searchAllByLevel(level);  //searchAllWord-> searchAllByLevel  (JavaWordList에)
+            break;
+            default:
+            System.out.println("1 혹은 2 만 입력하세요.");
+            return;
+        }
+        if(list.size()==0) {
+            System.out.println("존재하지 않는 단어입니다.");}
+            else 
+            JavaWordList.print(list);     //printWordList(list); ->   JavaWordList.print(list); 
+        }
+        
+        //searchAllWord사라지고 English, level각각 만들었음
+    
     private void removeWord() {
         System.out.println("\t::단어 삭제합니다.::");
         System.out.print("삭제할 단어를 영문으로 입력하세요. _");
@@ -71,57 +121,7 @@ public class JavaWordApp_V3 {
             //position은 찾은 단어 다음 위치부터 다시 찾기
         }
     }
- 
-   
-    //JavaWordList 객체의 메소드를 이용해서 수정해보세요.
-       //searchWord 메소드를 업그레이드
-       private void searchWordBy() {
-        System.out.println("\t::단어 검색합니다.(단어 조회는 1 , 레벨 조회는 2)::");
-        String find=null;
-        List<JavaWord> list=null;       //조합도
-        System.out.println("선택 >> ");
-        switch (System.console().readLine()) {
-            case "1":
-            System.out.println("검색할 단어를 영문으로 입력하세요._");
-            find = System.console().readLine();
-            list= words.searchAllByEnglish(find);
-                break;
-            case "2":
-            System.out.println("검색할 레벨을 입력하세요._");
-            int level = Integer.parseInt(find);
-            list = words.searchAllByLevel(level); 
-            break;
-            default:
-            System.out.println("1,2만 입력하세요.");
-            return;
-        }
-        System.out.println("\t:: 검색 결과 입니다.::");
-        if(list.size()==0) {
-            System.out.println("찾는 단어가 단어장에 없습니다.");}
-        else 
-        JavaWordList.print(list);     //static 메소드 실행
-    }
-
-
-    private void addWord() {
-        System.out.println("\t::단어 등록합니다.::");
-        //사용자 키보드 입력으로 데이터 생성
-        System.out.print("영어 단어 입력하세요. _ ");
-        String english = System.console().readLine();
-        System.out.print("한글 의미 입력하세요. _ ");
-        String korean = System.console().readLine();
-        System.out.print("단어 레벨 입력하세요.(1:초급 2:중급 3:고급) _");
-        int level = Integer.parseInt(System.console().readLine());
-
-        words.add(new JavaWord(english, korean, level));
-  
-    }
-    private void listWord() {
-        System.out.println("\t::단어 목록 출력합니다.::");
-       words.print();
-    }
-
-
+    
     public static void main(String[] args) {
         //프로그램 실행하는 객체 생성하고 
         //          (메소드로 기능을 분리할 때 main이 호출하는 static 을 없애기 위함.)

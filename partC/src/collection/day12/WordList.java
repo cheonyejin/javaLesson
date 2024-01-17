@@ -8,31 +8,27 @@ import collection.myapp.JavaWord;
 
 public interface WordList {
 
-        //최대 단어 100개수를 설정한다면
-        public static final int MAX_LENGTH=100;
-        //추상메소드 정의 - 구현 내용은 클래스의 특징에 따라 정의됩니다.
+        public static final int MAX_LENGTH=100;   //최대 단어 100개
+          //MAX_LENGTH은 100으로 고정시킬거다- static final ->상수(변하지않는값)
+          //final:변경못함 
+          //static:모든인터페이스에서 참조가능
+     
 
-       JavaWord getWord(int i);
-       List<JavaWord> list();
-       void add(JavaWord word);
-       int indexOfWord(String english,int position);
-       JavaWord remove(int index);
-       List<JavaWord> searchAllByEnglish(String english);
-       void print();
+          //추상메서드: 선언만하고 명령코드는 없는거 
+          // 아래는 모두 추상메소드다. 선언만 하니까.(//1. ~ 7)
+          JavaWord getWord(int i);      //1.
+          List<JavaWord> list();        //2.                //🈹여기 이미 구현했는데 
+          void add(JavaWord word);      //3.
+          int indexOfWord(String english,int position);//4.
+          JavaWord remove(int index);                  //5.
+          List<JavaWord> searchAllByEnglish(String english);//6.
+          void print();                 //7.
 
-       //만약에, 이미 구현 클래스 외에 이후 구현에는 적용하고 싶은 메소드가 있다면 
-       //default 키워드로 정의
+          //만약에, 이미 구현 클래스 외에 이후 구현에는 적용하고 싶은 메소드가 있다면 
+          //default 키워드로 정의
 
-       default List<JavaWord> search(Object object){
-            return null;
+          default List<JavaWord> search(Object object){ //🈹또 구현하려면 default붙여
+               return null;
        }
 
     }
-
-
-    
-
-
-
-
-
