@@ -12,9 +12,9 @@ public class D07ImageFileCopy {
         
         long start = System.nanoTime();    //System에서 시간측정 메소드: 방법1. 나노세건트 10억분의 1 , 방법2. ms 1000분의 1 
         //처리해야할 메소드
-        // copyByByte();
-        copyByBuffer();
-        // copyByByteArray();
+        copyByByte();
+        //copyByBuffer();
+        //copyByByteArray();
         long end = System.nanoTime();
         System.out.println(String.format("소요시간 : %,d ms",(end-start))); //소요시간 : 20,977,300 ms
     }
