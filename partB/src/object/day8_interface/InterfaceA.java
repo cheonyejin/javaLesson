@@ -12,7 +12,7 @@ public interface InterfaceA {
 	//생성자는 없습니다. -> 직접 객체를 생성하지 않습니다.
 	//필드는 상수만 가능
 	//public static final 생략함. -> 규칙을 정의할때 필요한 상수값 선언.
-	int SIZE = 100;
+	
 	
 	/* 인터페이스 구성- 아래 4가지만 포함될수있습니다 .아래요소들은 모두 public abstract 생략함.
 	 *1) 추상 메소드  : A , B 
@@ -26,7 +26,8 @@ public interface InterfaceA {
 	void methodA();
 	int methodB(int num);
 	
-	//public생략
+	//public생략가능
+
     //2) 인스턴스메소드(default 매소드) : default : default 제한자 의미가 아니고 인스턴스 메소드 의미
 	default void methodC(String message) {
 		System.out.println("메시지 수신 : " + message);
@@ -36,5 +37,6 @@ public interface InterfaceA {
 	static void medthodD() {
 		System.out.println("나는 static 메소드입니다.");
 	}
-	
+	//4)상수
+	int SIZE = 100;
 }

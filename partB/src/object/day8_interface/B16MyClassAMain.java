@@ -8,9 +8,12 @@ public class B16MyClassAMain {
     public static void main(String[] args) {
         // InterfaceA ifa = new InterfaceA(); -> 오류 : 인터페이스로 객체는 생성 못한다 
         //                                              단, 익명내부 타입으로 정의는 가능
-        
+        //MyClassA가 InterfaceA를 구현한 상황 
+
         //구현클래스로 객체 생성하기 
         MyClassA mya = new MyClassA();
+
+        
         //업캐스팅 -가능
         InterfaceA ifa = new MyClassA();
         //다운캐스팅 - 가능하다 
