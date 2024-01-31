@@ -14,10 +14,14 @@ public class BuyVO {
     public int quantity;
     public Date buy_date;
 
-    public BuyVO(String customId, String pcode, int quantity) {
+    
+
+    public BuyVO(int buy_idx, String customId, String pcode, int quantity, Date buy_date) {
+        this.buy_idx = buy_idx;
         this.customId = customId;
         this.pcode = pcode;
         this.quantity = quantity;
+        this.buy_date = buy_date;
     }
 
     public int getBuy_idx() {

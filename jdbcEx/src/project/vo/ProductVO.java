@@ -16,6 +16,8 @@ public class ProductVO {
     public String pname;
     public int price;
 
+    
+
     @Override
     public String toString() {
         return String.format("%6s %15s %40s\t %,8d", category,pcode,pname,price);
