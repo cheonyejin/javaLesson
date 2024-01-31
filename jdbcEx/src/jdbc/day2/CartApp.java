@@ -75,7 +75,7 @@ public class CartApp {
     }
 
     private static void menu_insert(String customId) {
-        BuyVO vo = new BuyVO(customId, "CJBAb12g", 2);
+        BuyVO vo = new BuyVO(0, customId, "CJBAb12g", 2, null);
         TblBuyDao dao = new TblBuyDao();
         dao.insert(vo);
 

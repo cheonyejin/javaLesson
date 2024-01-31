@@ -1,9 +1,12 @@
 package jdbc.day2;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import project.dao.TblBuyDao;
 import project.dao.TblProductDao;
+import project.vo.BuyVO;
 import project.vo.CustomerBuyVo;
 import project.vo.ProductVO;
 
@@ -59,15 +62,54 @@ public class CartApp_2 {
                         for(ProductVO vo  : productList)
                                 System.out.println(vo);
                         break;               
-                case "M","m":       //나의 구매내역  -tbl_buy에 없는 이름 쓰면 아무것도 안뜸
+                case "M","m":       //[M] 나의 구매내역  -tbl_buy에 없는 이름 쓰면 아무것도 안뜸
                         List<CustomerBuyVo> result = buyDao.selectCustBuyVO(customerid);
                         for(CustomerBuyVo vo : result)
                                 System.out.println(vo);
                         break;
-  
-                case "X","x":       //[X] 구매 종료
-                        run=false;
-                        break;                      
+                case "B","b":   //[B] 구매하기
+                        System.out.print(" 상품코드를 입력하세요. __ ");
+                        String pcode = System.console().readLine();
+    
+                        System.out.print(" 수량을 입력하세요. __ ");
+                        int quantity = Integer.parseInt(System.console().readLine());
+    
+                        BuyVO vo = new BuyVO(0, customerid, pcode, quantity, null);
+                        
+                        if(buyDao.insert(vo)==1){
+                                System.out.println("상품을 담았습니다.");
+                        }else System.out.println("잘못된 입력입니다.");//없는값 입력했을때
+                        
+                        break;
+                case "D","d":   //[D] 구매 취소   
+                        System.out.print("취소할 구매 번호를 입력하세요. __ ");
+                        int buy_idx = Integer.parseInt(System.console().readLine());
+                        if(buyDao.delete(buy_idx)==1){
+                                System.out.println("정상적으로 취소 되었습니다 ");
+                        }else System.out.println("잘못된 입력입니다.");
+                        break;
+                case "Q","q":   //[Q] 구매 수량 변경
+                        System.out.print(" 수정할 구매 번호를 입력하세요. __ ");
+                        buy_idx = Integer.parseInt(System.console().readLine());
+    
+                   
+                        System.out.print(" 변경할 수량을 입력하세요. __ ");
+                        quantity = Integer.parseInt(System.console().readLine());
+
+                        if( buyDao.modify(quantity,buy_idx)==1){
+                                System.out.println("정상적으로 수정 되었습니다 ");
+                        }else System.out.println("잘못된 입력입니다.");
+                       
+                        //만약 Map을 사용한다면 
+                        Map<String,Integer> arg = new HashMap<>();
+                        arg.put("buyidx",buy_idx);
+                        arg.put("quantity", quantity);
+                        // public void modify(Map<String,Integer> arg){ 으로 변경
+                        // pstmt.setInt(1, arg.get("quantity")); 으로 변경
+
+                    break;    
+                case "X","x": //[X] 구매 종료
+                    return;  
                 default:
                     break;
             }
