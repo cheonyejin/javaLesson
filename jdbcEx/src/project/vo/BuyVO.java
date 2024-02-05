@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * tbl_buy 테이블의 필드와 1:1 매칭하는 변수로 정의합니다
  */
-public class BuyVO {
+public class BuyVo {
 
     public int buy_idx;
     public String customId;
@@ -14,9 +14,7 @@ public class BuyVO {
     public int quantity;
     public Date buy_date;
 
-    
-
-    public BuyVO(int buy_idx, String customId, String pcode, int quantity, Date buy_date) {
+    public BuyVo(int buy_idx, String customId, String pcode, int quantity, Date buy_date) {
         this.buy_idx = buy_idx;
         this.customId = customId;
         this.pcode = pcode;
@@ -63,7 +61,7 @@ public class BuyVO {
     public void setBuy_date(Date buy_date) {
         this.buy_date = buy_date;
     }
-    
+
     @Override
     public String toString() {
         return "BuyVO [buy_idx=" + buy_idx + ", customId=" + customId + ", pcode=" + pcode + ", quantity=" + quantity
@@ -90,7 +88,7 @@ public class BuyVO {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BuyVO other = (BuyVO) obj;
+        BuyVo other = (BuyVo) obj;
         if (buy_idx != other.buy_idx)
             return false;
         if (customId == null) {
@@ -112,8 +110,5 @@ public class BuyVO {
             return false;
         return true;
     }
-
-
-
 
 }

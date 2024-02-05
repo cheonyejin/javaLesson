@@ -1,19 +1,20 @@
 package project.vo;
+
 //Vo : value object  : 데이터 형식을 정의하는 클래스 
 //                      private필드, 커스텀생성자(값초기화),getter,toString, hashcode,equals 를 한것
 //                      객체 생성시 값을 초기화 한 후 변경할수 없으며, 필드값이 같으면 같은 값으로 처리되는 객체
 //단축키 : 컨트롤 점 
 import java.sql.Date;
 
-public class CustomerVO {        //--> tbl_custom테이블과 1:1 대응되는 변수로 만들었다.
+public class CustomerVo { // --> tbl_custom테이블과 1:1 대응되는 변수로 만들었다.
     private String customId;
     private String name;
-    private String email;       //불변값으로 설정해보자 
-    private int age;            //불변값으로 설정해보자
+    private String email; // 불변값으로 설정해보자
+    private int age; // 불변값으로 설정해보자
     private Date reg_data;
 
-    //생성자 
-    public CustomerVO(String customId, String name, String email, int age, Date reg_data) {
+    // 생성자
+    public CustomerVo(String customId, String name, String email, int age, Date reg_data) {
         this.customId = customId;
         this.name = name;
         this.email = email;
@@ -21,7 +22,7 @@ public class CustomerVO {        //--> tbl_custom테이블과 1:1 대응되는 �
         this.reg_data = reg_data;
     }
 
-    //getter
+    // getter
     public String getCustomId() {
         return customId;
     }
@@ -42,14 +43,14 @@ public class CustomerVO {        //--> tbl_custom테이블과 1:1 대응되는 �
         return reg_data;
     }
 
-    //toString
+    // toString
     @Override
     public String toString() {
         return "BuyVo [customId=" + customId + ", name=" + name + ", email=" + email + ", age=" + age + ", reg_data="
                 + reg_data + "]";
     }
 
-    //참고: 아래 2개의 메소드가 재정의 되어야 진짜 VO이다. 
+    // 참고: 아래 2개의 메소드가 재정의 되어야 진짜 VO이다.
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -70,7 +71,7 @@ public class CustomerVO {        //--> tbl_custom테이블과 1:1 대응되는 �
             return false;
         if (getClass() != obj.getClass())
             return false;
-        CustomerVO other = (CustomerVO) obj;
+        CustomerVo other = (CustomerVo) obj;
         if (customId == null) {
             if (other.customId != null)
                 return false;
@@ -95,10 +96,5 @@ public class CustomerVO {        //--> tbl_custom테이블과 1:1 대응되는 �
             return false;
         return true;
     }
-    
-    
 
-    
-
-    
 }
